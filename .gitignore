@@ -1,2 +1,6 @@
 Pipfile
 Pipfile.lock
+internplusplus/__pycache__/
+student_det/__pycache__/
+student_det/migrations/__pycache__/
+
