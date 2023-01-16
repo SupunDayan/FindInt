@@ -15,7 +15,7 @@ class ProLang(models.Model):
     language = models.CharField(max_length=20)
 
 
-class Skills(models.Model):
+class Skill(models.Model):
     id = models.BigIntegerField(primary_key=True)
     student_det = models.ForeignKey(StudentDet, models.DO_NOTHING)
     skill = models.CharField(max_length=50)

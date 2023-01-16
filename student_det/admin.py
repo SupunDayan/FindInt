@@ -1,7 +1,7 @@
 from django.contrib import admin
-from . models import StudentDet, Skills, ProLang
+from . models import StudentDet, Skill, ProLang
 
 admin.site.register(StudentDet)
-admin.site.register(Skills)
+admin.site.register(Skill)
 admin.site.register(ProLang)
 
