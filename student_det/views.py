@@ -54,4 +54,12 @@ def returnSkill(id):
         if skill.student_det.pk == studentDets[id].pk:
             stu_skills.append(skill.skill)
     print(stu_skills)
- 
+
+def returnProLang(id):
+    studentDets = StudentDet.objects.all()
+    pro_langs = ProLang.objects.all()
+    stu_pro_langs = list()
+    for pro_lang in pro_langs:
+        if pro_lang.student_det.pk == studentDets[id].pk:
+            stu_pro_langs.append(pro_lang.language)
+    print(stu_pro_langs) 
