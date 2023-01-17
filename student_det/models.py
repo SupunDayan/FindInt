@@ -10,33 +10,10 @@ class StudentDet(models.Model):
 
 
 class ProLang(models.Model):
-    id = models.BigIntegerField(primary_key=True)
     student_det = models.ForeignKey(StudentDet, models.DO_NOTHING)
     language = models.CharField(max_length=20)
 
 
 class Skill(models.Model):
-    id = models.BigIntegerField(primary_key=True)
     student_det = models.ForeignKey(StudentDet, models.DO_NOTHING)
     skill = models.CharField(max_length=50)
-
-
-
-# class Person(models.Model):
-#     id = models.BigIntegerField(primary_key=True, db_column='person_id')
-#     first_name = models.CharField(max_length=255)
-#     last_name = models.CharField(max_length=255)
-
-#     class Meta:
-#         db_table = 'person'
-
-
-# class PhoneNumbers(models.Model):
-#     id = models.BigIntegerField(primary_key=True)
-#     person = models.ForeignKey(Person, models.DO_NOTHING)
-#     phone_number = models.CharField(max_length=15)
-#     area_code = models.CharField(max_length=15)
-
-#     class Meta:
-#         db_table = 'phonenumbers'
-#         unique_together = (('person', 'phone_number', 'area_code'),)

@@ -8,9 +8,9 @@ from rest_framework import status
 
 @api_view(['GET'])
 def student_det_list(request):
-    studentDets = StudentDet.objects.all()
+    studentDets = StudentDet.all()
     serializer = StudentDetSerializer(studentDets, many = True)
-    return Response(serializer.data)  
+    return Response(serializer.data)
 
 @api_view(['GET'])
 def skill_list(request):
@@ -24,4 +24,12 @@ def pro_lang_list(request):
     serializer = ProLangSerializer(pro_langs,many=True)
     return Response(serializer.data)
 
-
+def returnSkill(id):
+    studentDets = StudentDet.objects.all()
+    skills = Skill.objects.all()
+    stu_skills = list()
+    for skill in skills:
+        if skill.student_det.pk == studentDets[id].pk:
+            stu_skills.append(skill.skill)
+    print(stu_skills)
+ 
