@@ -63,3 +63,29 @@ def returnProLang(id):
         if pro_lang.student_det.pk == studentDets[id].pk:
             stu_pro_langs.append(pro_lang.language)
     print(stu_pro_langs) 
+    
+@api_view(['GET','PUT','DELETE'])
+def student_det_detail(request, id):
+    try:
+        studentDet = StudentDet.objects.get(pk=id)
+        skill = iter(Skill.objects.filter(student_det = id))
+        prolangs = iter(ProLang.objects.filter(student_det = id))
+    except StudentDet.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    
+    if request.method == 'GET':
+        serializer = StudentDetSerializer(studentDet)      
+        return Response(serializer.data)
+    elif request.method == 'PUT':
+        serializer = StudentDetSerializer(studentDet, data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors,status= status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'DELETE':
+        for x in skill:
+            x.delete()
+        for x in prolangs:
+            x.delete()
+        studentDet.delete()
+        return Response(status= status.HTTP_204_NO_CONTENT)
