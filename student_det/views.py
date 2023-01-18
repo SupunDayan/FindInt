@@ -46,6 +46,12 @@ def pro_lang_list(request):
             serializer.save()
             return Response(serializer.data, status = status.HTTP_201_CREATED)
 
+@api_view(['GET'])
+def search_student(request, degree, uni):
+    studentDets = StudentDet.objects.filter(degree = degree, university = uni)
+    serializer = StudentDetSerializer(studentDets, many = True)
+    return Response(serializer.data)
+
 def returnSkill(id):
     studentDets = StudentDet.objects.all()
     skills = Skill.objects.all()
