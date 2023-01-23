@@ -1,8 +1,8 @@
 from django.db import models
-from company.models import company
+from company.models import Company
 
 class Internship(models.Model):
-    company =  models.ForeignKey(company, on_delete=models.CASCADE)
+    company =  models.ForeignKey(Company, on_delete=models.CASCADE)
     title = models.CharField(max_length=100, default="")
     description = models.CharField(max_length=5000, default="")
     category = models.CharField(max_length=5000, default="")
