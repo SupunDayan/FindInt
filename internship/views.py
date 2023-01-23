@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from . models import Gig,Skill, ProLang, Internship
-from . serializers import InternshipSerializer, SkillSerializer, ProLangSerializer, GigSerializer
+from . models import Skill, ProLang, Internship
+from . serializers import InternshipSerializer, SkillSerializer, ProLangSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
