@@ -21,7 +21,6 @@ def internship_list(request):
             create_ProLangs(request, internship)
             return Response(serializer.data, status = status.HTTP_201_CREATED)
 
-
 def create_skills(request,internship):
     skills = request.data["skills"].split(", ")
     for skill in skills :
@@ -35,6 +34,42 @@ def create_ProLangs(request, internship):
         ProLang_serializer = ProLangSerializer(data = {'ProLang':ProLang,'Internship':internship.id})
         if ProLang_serializer.is_valid():
             ProLang_serializer.save()
+
+
+@api_view(['GET','PUT','DELETE'])
+def internship_update(request,id):
+    try:
+        internship = Internship.objects.get(id = id)
+    
+    except internship.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if(request.method == 'GET'):
+        serializer = InternshipSerializer(internship)
+        return Response(serializer.data)
+
+    if(request.method == 'PUT'):
+        serializer = InternshipSerializer(internship, data = request.data)
+        if serializer.is_valid():
+            internship = serializer.save()
+            delete_skills(internship)
+            delete_ProLangs(internship)
+            create_skills(request,internship)
+            create_ProLangs(request, internship)
+            return Response(serializer.data, status = status.HTTP_201_CREATED)
+    
+    if(request.method == 'DELETE'):
+        internship.delete()
+
+def delete_skills(internship):
+    skills=  Skill.objects.filter(Internship=internship.id)
+    skills.delete()
+
+def delete_ProLangs(internship):
+    ProLangs=  ProLang.objects.filter(Internship=internship.id)
+    ProLangs.delete()
+
+
 
 
 

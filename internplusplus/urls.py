@@ -16,10 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import include
-
+from internship import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-     path('internships/' ,include('internship.urls'))
-
+    path('internships/' ,include('internship.urls')),
+    path('<int:id>',views.internship_update)
+    
 ]
