@@ -19,3 +19,25 @@ def company_list(request):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status = status.HTTP_201_CREATED)
+
+@api_view(['GET','PUT','DELETE'])
+def company_id(request,id):
+    try:
+        company_obj = company.objects.get(id = id)
+    
+    except company_obj.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if(request.method == 'GET'):
+        serializer = companySerializer(company_obj)
+        return Response(serializer.data)
+
+    if(request.method == 'PUT'):
+        serializer = companySerializer(company_obj, data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+           
+            return Response(serializer.data, status = status.HTTP_201_CREATED)
+    
+    if(request.method == 'DELETE'):
+        company_obj.delete()
