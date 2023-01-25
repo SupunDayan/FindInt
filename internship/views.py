@@ -70,6 +70,38 @@ def delete_ProLangs(internship):
     ProLangs.delete()
 
 
+@api_view(['GET', 'POST'])
+def intern_detail_by_title(request, *args, **kwargs) :
+    
+    try:
+        params = kwargs
+        internships = Internship.objects.filter(title=params['title'])
+    except Internship.DoesNotExist:
+        return Response(status = status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = InternshipSerializer(internships, many=True)
+        return Response(serializer.data, status = status.HTTP_201_CREATED)
+    elif request.method == 'POST':
+        pass
+
+
+@api_view(['GET', 'POST'])
+def intern_detail_by_category(request, *args, **kwargs) :
+    
+    try:
+        params = kwargs
+        internships = Internship.objects.filter(category=params['category'])
+    except Internship.DoesNotExist:
+        return Response(status = status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = InternshipSerializer(internships, many=True)
+        return Response(serializer.data, status = status.HTTP_201_CREATED)
+    elif request.method == 'POST':
+        pass
+
+
 
 
 
