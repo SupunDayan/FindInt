@@ -1,8 +1,7 @@
 from django.shortcuts import render
-<<<<<<< HEAD
 from django.http import JsonResponse
-from . models import company
-from . serializers import companySerializer
+from . models import Company
+from . serializers import CompanySerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
@@ -11,12 +10,12 @@ from rest_framework import status
 
 def company_list(request):
     if(request.method == 'GET'):
-        companies = company.objects.all()
-        serializer = companySerializer(companies, many = True)
+        companies = Company.objects.all()
+        serializer = CompanySerializer(companies, many = True)
         return Response(serializer.data)
     
     if(request.method == 'POST'):
-        serializer = companySerializer(data = request.data)
+        serializer = CompanySerializer(data = request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status = status.HTTP_201_CREATED)
@@ -24,17 +23,17 @@ def company_list(request):
 @api_view(['GET','PUT','DELETE'])
 def company_id(request,id):
     try:
-        company_obj = company.objects.get(id = id)
+        company_obj = Company.objects.get(id = id)
     
     except company_obj.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if(request.method == 'GET'):
-        serializer = companySerializer(company_obj)
+        serializer = CompanySerializer(company_obj)
         return Response(serializer.data)
 
     if(request.method == 'PUT'):
-        serializer = companySerializer(company_obj, data = request.data)
+        serializer = CompanySerializer(company_obj, data = request.data)
         if serializer.is_valid():
             serializer.save()
            
@@ -42,7 +41,3 @@ def company_id(request,id):
     
     if(request.method == 'DELETE'):
         company_obj.delete()
-=======
-
-# Create your views here.
->>>>>>> internship
