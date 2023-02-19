@@ -1,4 +1,5 @@
 from django.shortcuts import render
+<<<<<<< HEAD
 from django.http import JsonResponse
 from . models import company
 from . serializers import companySerializer
@@ -41,3 +42,7 @@ def company_id(request,id):
     
     if(request.method == 'DELETE'):
         company_obj.delete()
+=======
+
+# Create your views here.
+>>>>>>> internship

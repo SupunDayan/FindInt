@@ -20,9 +20,14 @@ from student_det import views
 
 
 
+from internship import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('internships/' ,include('internship.urls')),
     path('company/' ,include('company.urls'))                             
+    path('<int:id>',views.internship_update),
+    path('internships/<str:title>/' , views.intern_detail_by_title),
+    path('internships/<str:category>/' , views.intern_detail_by_category)
+    
 ]
