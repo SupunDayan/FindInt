@@ -1,13 +1,5 @@
 from rest_framework import serializers
-<<<<<<< HEAD
 from internship.models import Gig,Skill, ProLang, Internship
-
-
-class InternshipSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Internship
-        fields = ['company','title','description','category']
-=======
 from internship.models import Skill, ProLang, Internship
 from company.models import Company
 
@@ -43,7 +35,6 @@ class InternshipSerializer(serializers.ModelSerializer):
         model = Internship
         fields = ['company','title','description','category','open_date','closing_date','company_name','skills','programming_languages','internship_id']
 
->>>>>>> internship
 
 class SkillSerializer(serializers.ModelSerializer):
     class Meta:
@@ -55,10 +46,7 @@ class ProLangSerializer(serializers.ModelSerializer):
         model = ProLang
         fields = ['ProLang','Internship']
 
-<<<<<<< HEAD
 class GigSerializer(serializers.ModelSerializer):
     class Meta:
         model = Gig
         fields = ['Internship','open_date','closing_date']
-=======
->>>>>>> internship

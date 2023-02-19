@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from company.models import company
+from company.models import Company
 
 
-class companySerializer(serializers.ModelSerializer):
+class CompanySerializer(serializers.ModelSerializer):
     class Meta:
-        model = company
+        model = Company
         fields = ['id','name','location','description','email']
