@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'student_det',
     'corsheaders',
     'user',
+    'student',
 ]
 
 MIDDLEWARE = [
